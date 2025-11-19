@@ -50,6 +50,12 @@ fun main() {
     }
 
     result.onSuccess {
+        print("Do you want to enter a custom description? Y/N")
+        val option = input.nextLine()
 
+        if (option.equals("Y", true)) {
+            print("Enter a custom description for the game:")
+            val description = input.nextLine()
+        }
     }
 }
