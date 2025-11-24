@@ -1,4 +1,4 @@
-package org.example
+package br.com.scenarioautomation.alugames.model
 
 //no construtor nao precisamos instanciar a variavel
 //por isso temos que declarar o tipo da variavel
@@ -16,9 +16,16 @@ data class Game(val title: String, val thumb: String) {
     //nas classes que nao precisamos
     //ficar alterando
 
-    val description = ""
+    var description = ""
+    var isFavorite = false
 
     override fun toString(): String {
-        return "Game(title='$title', thumb='$thumb', description='$description')"
+        return String.format("""
+            -----
+            Title: %s
+            Thumb: %s
+            Description: %s
+            -----
+        """, title, thumb, description)
     }
 }
