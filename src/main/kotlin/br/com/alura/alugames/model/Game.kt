@@ -1,4 +1,4 @@
-package br.com.scenarioautomation.alugames.model
+package br.com.alura.alugames.model
 
 //no construtor nao precisamos instanciar a variavel
 //por isso temos que declarar o tipo da variavel

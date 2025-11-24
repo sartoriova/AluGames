@@ -1,8 +1,8 @@
-package br.com.scenarioautomation.alugames.main
+package br.com.alura.alugames.main
 
-import br.com.scenarioautomation.alugames.service.ApiConsumption
-import br.com.scenarioautomation.alugames.model.Game
-import br.com.scenarioautomation.alugames.model.Gamer
+import br.com.alura.alugames.service.ApiConsumption
+import br.com.alura.alugames.model.Game
+import br.com.alura.alugames.model.Gamer
 import java.util.Scanner
 
 fun main() {

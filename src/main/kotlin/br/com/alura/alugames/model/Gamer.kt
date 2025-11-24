@@ -1,6 +1,6 @@
-package br.com.scenarioautomation.alugames.model
+package br.com.alura.alugames.model
 
-import br.com.scenarioautomation.alugames.utils.getAge
+import br.com.alura.alugames.utils.getAge
 import java.util.Scanner
 import kotlin.random.Random
 

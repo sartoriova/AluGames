@@ -1,4 +1,4 @@
-package br.com.scenarioautomation.alugames.utils
+package br.com.alura.alugames.utils
 
 import java.time.LocalDate
 import java.time.Period

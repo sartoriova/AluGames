@@ -1,6 +1,6 @@
-package br.com.scenarioautomation.alugames.main
+package br.com.alura.alugames.main
 
-import br.com.scenarioautomation.alugames.model.Gamer
+import br.com.alura.alugames.model.Gamer
 
 fun main() {
     var gamer1: Gamer? = null

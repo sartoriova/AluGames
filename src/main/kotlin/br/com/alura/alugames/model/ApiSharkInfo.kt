@@ -1,4 +1,4 @@
-package br.com.scenarioautomation.alugames.model
+package br.com.alura.alugames.model
 
 data class ApiSharkInfo(val title:String, val thumb:String)
 //criado para nao precisar usar o SerializedName!

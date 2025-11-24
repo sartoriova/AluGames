@@ -1,7 +1,7 @@
-package br.com.scenarioautomation.alugames.service
+package br.com.alura.alugames.service
 
 import com.google.gson.Gson
-import br.com.scenarioautomation.alugames.model.GameInfo
+import br.com.alura.alugames.model.GameInfo
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
