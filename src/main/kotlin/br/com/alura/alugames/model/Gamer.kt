@@ -25,6 +25,7 @@ data class Gamer(var name: String, var email: String) : Recommendation {
     val rentedGames = mutableListOf<Rental>()
     var plan: Plan = IndividualPlan("bronze")
     val scores = mutableListOf<Int>()
+    val recommendedGames = mutableListOf<Game>()
 
     constructor(name: String, email: String, dateOfBirth:String, userName:String) : this(name, email) {
         this.dateOfBirth = dateOfBirth
@@ -46,6 +47,11 @@ data class Gamer(var name: String, var email: String) : Recommendation {
     override fun recommend(score: Int) {
         if (score < 1 || score > 10) throw IllegalArgumentException("Invalid score!")
         scores.add(score)
+    }
+
+    fun recommendGame(game: Game, score: Int) {
+        game.recommend(score)
+        recommendedGames.add(game)
     }
 
     fun generateId() {
@@ -109,6 +115,15 @@ data class Gamer(var name: String, var email: String) : Recommendation {
     }
 
     override fun toString(): String {
-        return "Gamer(name='$name', email='$email', dateOfBirth=$dateOfBirth, age=$age, userName=$userName, id=$id, favoriteGames=$favoriteGames, reputation=$average)"
+        return String.format(
+            """
+                -----
+                Id: %s
+                Name: %s
+                Email: %s
+                Date of birth: %s
+                User name: %s
+                Reputation: %.2f
+            """, id, name, email, dateOfBirth, userName, average)
     }
 }

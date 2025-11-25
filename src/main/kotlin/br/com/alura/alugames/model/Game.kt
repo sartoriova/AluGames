@@ -1,8 +1,10 @@
 package br.com.alura.alugames.model
 
+import com.google.gson.annotations.Expose
+
 //no construtor nao precisamos instanciar a variavel
 //por isso temos que declarar o tipo da variavel
-data class Game(val title: String, val thumb: String) {
+data class Game(@Expose val title: String, @Expose val thumb: String) : Recommendation {
     //diferenca entre var e val:
     //var permite alteração no valor
     //val não permite alteração no valor uma vez
@@ -18,12 +20,21 @@ data class Game(val title: String, val thumb: String) {
 
     var description = ""
     var price = 0.0
+    val scores = mutableListOf<Int>()
     var isFavorite = false
 
     constructor(title: String, thumb: String, price: Double, description: String):
             this(title, thumb) {
         this.price = price
         this.description = description
+    }
+
+    override val average: Double
+        get() = scores.average()
+
+    override fun recommend(score: Int) {
+        if (score < 1 || score > 10) throw IllegalArgumentException("Invalid score!")
+        scores.add(score)
     }
 
     override fun toString(): String {
@@ -33,7 +44,8 @@ data class Game(val title: String, val thumb: String) {
             Thumb: %s
             Description: %s
             Price: %.2f
+            Reputation: %.2f
             -----
-        """, title, thumb, description, price)
+        """, title, thumb, description, price, average)
     }
 }
