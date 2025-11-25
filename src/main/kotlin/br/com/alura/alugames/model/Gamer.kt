@@ -23,6 +23,7 @@ data class Gamer(var name: String, var email: String) {
         private set //somente a classe Gamer pode alterar o valor
     val favoriteGames = mutableListOf<Game?>()
     val rentedGames = mutableListOf<Rental>()
+    var plan: Plan = IndividualPlan("bronze")
 
     constructor(name: String, email: String, dateOfBirth:String, userName:String) : this(name, email) {
         this.dateOfBirth = dateOfBirth
@@ -56,6 +57,12 @@ data class Gamer(var name: String, var email: String) {
         rentedGames.add(rental)
 
         return rental
+    }
+
+    fun getMonthlyGames(month:Int): List<Game> {
+        return rentedGames
+            .filter { rental ->  rental.period.initialDate.monthValue == month}
+            .map { rental ->  rental.game}
     }
 
     companion object {

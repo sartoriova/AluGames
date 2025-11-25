@@ -1,5 +1,6 @@
 package br.com.alura.alugames.main
 
+import br.com.alura.alugames.model.SubscriptionPlan
 import br.com.alura.alugames.service.ApiConsumption
 import java.time.LocalDate
 
@@ -20,4 +21,14 @@ fun main() {
     gamerCaroline.rentGame(gameTheLastOfUs, LocalDate.now(), LocalDate.now().plusDays(10))
 
     println(gamerCaroline.rentedGames)
+
+    val gamerCamila = gamersList[5]
+    gamerCamila.plan = SubscriptionPlan("prata", 9.9, 3)
+
+    gamerCamila.rentGame(gameResidentVillage, LocalDate.now(), LocalDate.now().plusDays(3))
+    gamerCamila.rentGame(gameSpiderMan, LocalDate.now(), LocalDate.now().plusDays(7))
+    gamerCamila.rentGame(gameTheLastOfUs, LocalDate.now(), LocalDate.now().plusDays(10))
+    gamerCamila.rentGame(gameTheLastOfUs, LocalDate.now(), LocalDate.now().plusDays(10))
+
+    println(gamerCamila.rentedGames)
 }
