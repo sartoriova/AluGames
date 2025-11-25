@@ -1,6 +1,7 @@
 package br.com.alura.alugames.model
 
 import br.com.alura.alugames.utils.getAge
+import java.time.LocalDate
 import java.util.Scanner
 import kotlin.random.Random
 
@@ -21,6 +22,7 @@ data class Gamer(var name: String, var email: String) {
     var id:String? = null
         private set //somente a classe Gamer pode alterar o valor
     val favoriteGames = mutableListOf<Game?>()
+    val rentedGames = mutableListOf<Rental>()
 
     constructor(name: String, email: String, dateOfBirth:String, userName:String) : this(name, email) {
         this.dateOfBirth = dateOfBirth
@@ -47,6 +49,13 @@ data class Gamer(var name: String, var email: String) {
         val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
 
         return regex.matches(email)
+    }
+
+    fun rentGame(game: Game, initialDate: LocalDate, finalDate: LocalDate): Rental {
+        val rental = Rental(this, game, MyPeriod(initialDate, finalDate))
+        rentedGames.add(rental)
+
+        return rental
     }
 
     companion object {

@@ -17,7 +17,14 @@ data class Game(val title: String, val thumb: String) {
     //ficar alterando
 
     var description = ""
+    var price = 0.0
     var isFavorite = false
+
+    constructor(title: String, thumb: String, price: Double, description: String):
+            this(title, thumb) {
+        this.price = price
+        this.description = description
+    }
 
     override fun toString(): String {
         return String.format("""
@@ -25,7 +32,8 @@ data class Game(val title: String, val thumb: String) {
             Title: %s
             Thumb: %s
             Description: %s
+            Price: %.2f
             -----
-        """, title, thumb, description)
+        """, title, thumb, description, price)
     }
 }

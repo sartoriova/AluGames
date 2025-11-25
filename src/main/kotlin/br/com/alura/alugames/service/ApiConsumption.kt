@@ -1,9 +1,12 @@
 package br.com.alura.alugames.service
 
+import br.com.alura.alugames.model.Game
 import com.google.gson.Gson
 import br.com.alura.alugames.model.GameInfo
+import br.com.alura.alugames.model.GameInfoJSON
 import br.com.alura.alugames.model.Gamer
 import br.com.alura.alugames.model.GamerInfoJSON
+import br.com.alura.alugames.utils.createGame
 import br.com.alura.alugames.utils.createGamer
 import com.google.gson.reflect.TypeToken
 import java.net.URI
@@ -44,6 +47,18 @@ class ApiConsumption {
 
         return gamersList.map {
             it.createGamer()
+        }.toList()
+    }
+
+    fun getGames(): List<Game> {
+        val stringJson = consumesData("https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/jogos.json")
+
+        val gson = Gson()
+        val myTypeGame = object : TypeToken<List<GameInfoJSON>>() {}.type
+        val gamesList: List<GameInfoJSON> = gson.fromJson(stringJson, myTypeGame)
+
+        return gamesList.map {
+            it.createGame()
         }.toList()
     }
 }
