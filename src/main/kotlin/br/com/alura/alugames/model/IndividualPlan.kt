@@ -1,3 +1,13 @@
 package br.com.alura.alugames.model
 
-class IndividualPlan (type: String) : Plan(type)
+class IndividualPlan (type: String) : Plan(type) {
+    override fun getPrice(rental: Rental): Double {
+        val originalPrice = super.getPrice(rental)
+
+        if (rental.gamer.average >= 8) {
+            return originalPrice - originalPrice * 0.1
+        }
+
+        return originalPrice
+    }
+}

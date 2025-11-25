@@ -23,7 +23,7 @@ fun main() {
     println(gamerCaroline.rentedGames)
 
     val gamerCamila = gamersList[5]
-    gamerCamila.plan = SubscriptionPlan("prata", 9.9, 3)
+    gamerCamila.plan = SubscriptionPlan("prata", 9.9, 3, 0.15)
 
     gamerCamila.rentGame(gameResidentVillage, LocalDate.now(), LocalDate.now().plusDays(3))
     gamerCamila.rentGame(gameSpiderMan, LocalDate.now(), LocalDate.now().plusDays(7))
@@ -31,4 +31,22 @@ fun main() {
     gamerCamila.rentGame(gameTheLastOfUs, LocalDate.now(), LocalDate.now().plusDays(10))
 
     println(gamerCamila.rentedGames)
+
+    val result = runCatching {
+        gamerCamila.recommend(11)
+        gamerCamila.recommend(10)
+        gamerCamila.recommend(7)
+    }
+
+    result.onSuccess {
+        println(gamerCamila)
+
+        gamerCamila.rentGame(gameResidentVillage, LocalDate.now(), LocalDate.now().plusDays(3))
+
+        println(gamerCamila.rentedGames)
+    }
+
+    result.onFailure {
+        println("\nInvalid score! Enter a number of 1 to 10!")
+    }
 }

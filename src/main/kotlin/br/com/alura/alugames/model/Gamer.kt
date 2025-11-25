@@ -5,7 +5,7 @@ import java.time.LocalDate
 import java.util.Scanner
 import kotlin.random.Random
 
-data class Gamer(var name: String, var email: String) {
+data class Gamer(var name: String, var email: String) : Recommendation {
     var dateOfBirth:String? = null
         set(value) {
             field = value
@@ -24,6 +24,7 @@ data class Gamer(var name: String, var email: String) {
     val favoriteGames = mutableListOf<Game?>()
     val rentedGames = mutableListOf<Rental>()
     var plan: Plan = IndividualPlan("bronze")
+    val scores = mutableListOf<Int>()
 
     constructor(name: String, email: String, dateOfBirth:String, userName:String) : this(name, email) {
         this.dateOfBirth = dateOfBirth
@@ -37,6 +38,14 @@ data class Gamer(var name: String, var email: String) {
 
         if (name.isBlank()) throw IllegalArgumentException("Invalid name!")
         this.name = name
+    }
+
+    override val average: Double
+        get() = scores.average()
+
+    override fun recommend(score: Int) {
+        if (score < 1 || score > 10) throw IllegalArgumentException("Invalid score!")
+        scores.add(score)
     }
 
     fun generateId() {
@@ -100,6 +109,6 @@ data class Gamer(var name: String, var email: String) {
     }
 
     override fun toString(): String {
-        return "Gamer(name='$name', email='$email', dateOfBirth=$dateOfBirth, age=$age, userName=$userName, id=$id, favoriteGames=$favoriteGames)"
+        return "Gamer(name='$name', email='$email', dateOfBirth=$dateOfBirth, age=$age, userName=$userName, id=$id, favoriteGames=$favoriteGames, reputation=$average)"
     }
 }
