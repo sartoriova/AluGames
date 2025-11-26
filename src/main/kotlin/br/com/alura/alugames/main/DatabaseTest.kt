@@ -10,9 +10,12 @@ fun main() {
     val manager = Database.getEntityManager()
     val gameDAO = GameDAO(manager)
 
-    gameDAO.addGame(game)
+    gameDAO.add(game)
 
-    println(gameDAO.getGames())
+    println(gameDAO.getById(5))
+    gameDAO.deleteById(5)
+
+    println(gameDAO.getList())
 
     manager.close()
 }
