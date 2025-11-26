@@ -18,13 +18,15 @@ data class Game(@Expose val title: String, @Expose val thumb: String) : Recommen
     //nas classes que nao precisamos
     //ficar alterando
 
+    var id = 0
     var description = ""
     var price = 0.0
     val scores = mutableListOf<Int>()
     var isFavorite = false
 
-    constructor(title: String, thumb: String, price: Double, description: String):
+    constructor(title: String, thumb: String, price: Double, description: String, id: Int = 0):
             this(title, thumb) {
+        this.id = id
         this.price = price
         this.description = description
     }
@@ -40,12 +42,13 @@ data class Game(@Expose val title: String, @Expose val thumb: String) : Recommen
     override fun toString(): String {
         return String.format("""
             -----
+            Id: %d
             Title: %s
             Thumb: %s
             Description: %s
             Price: %.2f
             Reputation: %.2f
             -----
-        """, title, thumb, description, price, average)
+        """, id, title, thumb, description, price, average)
     }
 }
