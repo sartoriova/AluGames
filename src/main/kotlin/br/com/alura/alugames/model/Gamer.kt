@@ -27,7 +27,7 @@ data class Gamer(var name: String, var email: String) : Recommendation {
     val scores = mutableListOf<Int>()
     val recommendedGames = mutableListOf<Game>()
 
-    constructor(name: String, email: String, dateOfBirth:String, userName:String) : this(name, email) {
+    constructor(name: String, email: String, dateOfBirth:String?, userName:String?, id:Int = 0) : this(name, email) {
         this.dateOfBirth = dateOfBirth
         this.userName = userName
         generateId()

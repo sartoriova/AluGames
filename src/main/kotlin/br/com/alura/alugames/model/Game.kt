@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose
 
 //no construtor nao precisamos instanciar a variavel
 //por isso temos que declarar o tipo da variavel
+
 data class Game(@Expose val title: String, @Expose val thumb: String) : Recommendation {
     //diferenca entre var e val:
     //var permite alteração no valor

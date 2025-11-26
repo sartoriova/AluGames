@@ -1,16 +1,19 @@
 package br.com.alura.alugames.data
 
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
+import javax.persistence.EntityManager
+import javax.persistence.Persistence
 
 object Database {
-    fun getConnection(): Connection? {
-        return try {
-            DriverManager.getConnection("jdbc:mysql://localhost:3306/alugames", "root", "")
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            null
-        }
+//    fun getConnection(): Connection? {
+//        return try {
+//            DriverManager.getConnection("jdbc:mysql://localhost:3306/alugames", "root", "")
+//        } catch (e: SQLException) {
+//            e.printStackTrace()
+//            null
+//        }
+//    }
+
+    fun getEntityManager(): EntityManager {
+        return Persistence.createEntityManagerFactory("alugames").createEntityManager()
     }
 }
