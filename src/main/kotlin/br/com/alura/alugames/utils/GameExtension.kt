@@ -9,7 +9,7 @@ fun GameInfoJSON.createGame(): Game {
 }
 
 fun Game.toEntity(): GameEntity {
-        return GameEntity(this.title, this.thumb, this.price, this.description)
+        return GameEntity(this.title, this.thumb, this.price, this.description, this.id)
 }
 
 fun GameEntity.toModel(): Game {

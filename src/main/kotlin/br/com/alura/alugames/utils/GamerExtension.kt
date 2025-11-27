@@ -9,7 +9,7 @@ fun GamerInfoJSON.createGamer(): Gamer {
 }
 
 fun Gamer.toEntity(): GamerEntity {
-    return GamerEntity(this.name, this.email, this.dateOfBirth, this.userName, this.plan.toEntity())
+    return GamerEntity(this.name, this.email, this.dateOfBirth, this.userName, this.plan.toEntity(), this.id)
 }
 
 fun GamerEntity.toModel(): Gamer {
