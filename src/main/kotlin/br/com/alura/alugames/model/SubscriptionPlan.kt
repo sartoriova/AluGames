@@ -1,6 +1,6 @@
 package br.com.alura.alugames.model
 
-class SubscriptionPlan(type: String, val monthlyPayment: Double, val includedGames: Int, val discountPercentage: Double): Plan(type) {
+class SubscriptionPlan(type: String, val monthlyPayment: Double, val includedGames: Int, val discountPercentage: Double, id: Int = 0): Plan(type, id) {
     override fun getPrice(rental: Rental): Double {
         val totalMonthlyGames = rental.gamer.getMonthlyGames(rental.period.initialDate.monthValue).size + 1
 
@@ -15,5 +15,9 @@ class SubscriptionPlan(type: String, val monthlyPayment: Double, val includedGam
         }
 
         return originalPrice
+    }
+
+    override fun toString(): String {
+        return "SubscriptionPlan(id=$id, type=$type, monthlyPayment=$monthlyPayment, includedGames=$includedGames, discountPercentage=$discountPercentage)"
     }
 }

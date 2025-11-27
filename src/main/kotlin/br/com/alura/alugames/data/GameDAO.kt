@@ -1,15 +1,17 @@
 package br.com.alura.alugames.data
 
 import br.com.alura.alugames.model.Game
+import br.com.alura.alugames.utils.toEntity
+import br.com.alura.alugames.utils.toModel
 import javax.persistence.EntityManager
 
 class GameDAO(manager: EntityManager) : DAO<Game, GameEntity>(manager, GameEntity::class.java) {
     override fun toEntity(element: Game): GameEntity {
-        return GameEntity(element.title, element.thumb, element.price, element.description)
+        return element.toEntity()
     }
 
     override fun toModel(entity: GameEntity): Game {
-        return Game(entity.titulo, entity.capa, entity.preco, entity.descricao, entity.id)
+        return entity.toModel()
     }
 //    fun getGames(): List<Game> {
 //        val games = mutableListOf<Game>()

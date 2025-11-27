@@ -15,21 +15,23 @@ data class Gamer(var name: String, var email: String) : Recommendation {
     var userName:String? = null
         set(value) {
             field = value
-            if (id.isNullOrBlank()) {
+            if (internId.isNullOrBlank()) {
                 generateId()
             }
         }
-    var id:String? = null
+    var internId:String? = null
         private set //somente a classe Gamer pode alterar o valor
     val favoriteGames = mutableListOf<Game?>()
     val rentedGames = mutableListOf<Rental>()
     var plan: Plan = IndividualPlan("bronze")
     val scores = mutableListOf<Int>()
     val recommendedGames = mutableListOf<Game>()
+    var id: Int = 0
 
     constructor(name: String, email: String, dateOfBirth:String?, userName:String?, id:Int = 0) : this(name, email) {
         this.dateOfBirth = dateOfBirth
         this.userName = userName
+        this.id = id
         generateId()
     }
 
@@ -58,7 +60,7 @@ data class Gamer(var name: String, var email: String) : Recommendation {
         val number = Random.nextInt(10000)
         val tag = String.format("%04d", number)
 
-        id = "$userName#$tag"
+        internId = "$userName#$tag"
     }
 
     fun validateEmail(): Boolean {
@@ -118,12 +120,14 @@ data class Gamer(var name: String, var email: String) : Recommendation {
         return String.format(
             """
                 -----
-                Id: %s
+                Intern id: %s
+                Id: %d
                 Name: %s
                 Email: %s
                 Date of birth: %s
                 User name: %s
                 Reputation: %.2f
-            """, id, name, email, dateOfBirth, userName, average)
+                Plano: %s
+            """, internId, id, name, email, dateOfBirth, userName, average, plan.type)
     }
 }

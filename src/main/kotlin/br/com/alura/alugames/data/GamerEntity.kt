@@ -4,6 +4,7 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
@@ -13,6 +14,8 @@ class GamerEntity (
     val email: String = "",
     val dataNascimento: String? = null,
     val usuario: String? = null,
+    @ManyToOne
+    val plano: PlanEntity = IndividualPlanEntity(),
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0
 )
